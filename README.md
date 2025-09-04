@@ -2,6 +2,8 @@
 
 A modern, responsive user management dashboard built with Next.js, TypeScript, and Tailwind CSS. This application allows you to browse, search, and manage users with a clean and intuitive interface.
 
+🌐 **Live Demo:** [View on Vercel](https://dashboard-ten-sigma-34.vercel.app)
+
 ## Features
 
 - **User Listing**: View all users in a responsive, sortable table
@@ -91,15 +93,3 @@ To learn more about the technologies used in this project:
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Framer Motion Documentation](https://www.framer.com/motion/)
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Built with ❤️ using Next.js and TypeScript
