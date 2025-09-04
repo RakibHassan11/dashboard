@@ -1,29 +1,12 @@
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #2563eb;
-  --muted: #f1f5f9;
-  --border: #e2e8f0;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --muted: 210 40% 96.1%;
+  --border: 214.3 31.8% 91.4%;
   --radius: 0.5rem;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
-    --muted: #1e293b;
-    --border: #1e293b;
-  }
-}
-
-/* Base styles */
-body {
-  @apply bg-background text-foreground;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

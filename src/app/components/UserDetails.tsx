@@ -1,11 +1,26 @@
 // 🎯 Animated User Details with 3D Globe Integration!
 
-import React from 'react';
+'use client';
+
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { ArrowLeft, User, Mail, Phone, Globe, Building, MapPin, Hash } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { User as UserType } from '../types/user';
-import ThreeGlobe from './ThreeGlobe';
+import { useRouter } from 'next/navigation';
+import { User as UserType } from '../../types/user';
+
+// Dynamically import ThreeGlobe with no SSR
+const ThreeGlobe = dynamic(() => import('./ThreeGlobe'), {
+  ssr: false,
+  loading: () => (
+    <div className="aspect-square bg-muted/30 rounded-lg flex items-center justify-center">
+      <div className="h-8 w-8 border-2 border-primary/50 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  ),
+});
+
+// Import skeleton loader
+import UserDetailsSkeleton from './UserDetailsSkeleton';
 
 interface UserDetailsProps {
   user: UserType | null;
@@ -13,14 +28,14 @@ interface UserDetailsProps {
 }
 
 const UserDetails: React.FC<UserDetailsProps> = ({ user, loading }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   if (loading) {
-    return <LoadingState />;
+    return <UserDetailsSkeleton />;
   }
 
   if (!user) {
-    return <ErrorState onBack={() => navigate('/')} />;
+    return <ErrorState onBack={() => router.push('/users')} />;
   }
 
   const containerVariants = {
@@ -56,7 +71,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, loading }) => {
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigate('/')}
+          onClick={() => router.push('/users')}
           className="flex items-center gap-2 mb-6 px-4 py-2 bg-card hover:bg-muted/50 border border-border rounded-lg transition-all duration-200 shadow-button"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -176,11 +191,17 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, loading }) => {
                 <h2 className="text-xl font-semibold">Location</h2>
               </div>
               
+              <Suspense fallback={
+              <div className="aspect-square bg-muted/30 rounded-lg flex items-center justify-center">
+                <div className="h-8 w-8 border-2 border-primary/50 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            }>
               <ThreeGlobe
                 lat={user.address.geo.lat}
                 lng={user.address.geo.lng}
                 userLocation={`${user.address.city}, ${user.address.zipcode}`}
               />
+            </Suspense>
               
               <div className="mt-4 p-4 bg-muted/30 rounded-lg">
                 <p className="text-sm text-muted-foreground mb-2">Geographic Coordinates</p>
@@ -290,7 +311,7 @@ const ErrorState: React.FC<{ onBack: () => void }> = ({ onBack }) => (
         <User className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
         <h2 className="text-2xl font-bold mb-2">User Not Found</h2>
         <p className="text-muted-foreground mb-6">
-          The user you're looking for doesn't exist or has been removed.
+          The user you are looking for does not exist or has been removed.
         </p>
         <button
           onClick={onBack}
@@ -303,4 +324,4 @@ const ErrorState: React.FC<{ onBack: () => void }> = ({ onBack }) => (
   </div>
 );
 
-export default UserDetails;
+// The actual component is exported with dynamic import above
