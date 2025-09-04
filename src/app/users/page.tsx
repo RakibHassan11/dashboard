@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { User } from '../../types/user';
 import { userService } from '../../services/userService';
+import UserListSkeleton from '../components/UserListSkeleton';
 
 // Dynamically import UserList with no SSR to avoid window is not defined errors
 const UserList = dynamic(
@@ -52,11 +53,9 @@ const UsersPage = () => {
 
   // Only render UserList when not in loading state to avoid hydration mismatch
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div>
       {loading ? (
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-        </div>
+        <UserListSkeleton />
       ) : (
         <UserList users={users} loading={loading} />
       )}
