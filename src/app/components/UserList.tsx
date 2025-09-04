@@ -116,7 +116,7 @@ const UserList: React.FC<UserListProps> = ({ users, loading }) => {
           className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-t-xl p-6 text-white"
         >
           <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl font-bold mb-2">
-            User Directory
+            User Management
           </motion.h1>
           <motion.p variants={itemVariants} className="text-sm sm:text-base text-blue-100">
             Browse and manage users
@@ -210,7 +210,7 @@ const UserList: React.FC<UserListProps> = ({ users, loading }) => {
               </div>
 
               {totalPages > 1 && (
-                <div className="absolute bottom-0 left-0 right-0 px-3 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center sm:border-t sm:border-gray-100 bg-transparent sm:bg-white backdrop-blur-0 sm:backdrop-blur-none shadow-none sm:shadow-md">
+                <div className="absolute bottom-0 left-0 right-0 px-3 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center bg-transparent sm:bg-white backdrop-blur-0 sm:backdrop-blur-none shadow-none ">
                   <span className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-0">
                     Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
                     <span className="font-medium">

@@ -74,7 +74,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, onBack }) => {
                 transition={{ delay: 0.2 }}
                 className="text-2xl md:text-3xl font-bold"
               >
-                {user.name}
+                User Details
               </motion.h1>
               <motion.p 
                 initial={{ x: -20, opacity: 0 }}
@@ -82,7 +82,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, onBack }) => {
                 transition={{ delay: 0.3 }}
                 className="text-blue-100"
               >
-                @{user.username}
+                 Find user info
               </motion.p>
             </div>
           </motion.div>
@@ -110,6 +110,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, onBack }) => {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
           >
             {[
+              { label: 'Name', value: user.name },
+              { label: 'Username', value: user.username },
               { label: 'Email', value: user.email },
               { label: 'Phone', value: user.phone },
               { 
